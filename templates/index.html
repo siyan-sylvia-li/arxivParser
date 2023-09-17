@@ -52,7 +52,7 @@
                 </div>
                 <div class="w3-container w3-cell">
                     <h3>Raw Text</h3>
-                    <textarea class="w3-input w3-border" type="text" id="textData" style="height: 600px;">{{ sml }}</textarea>
+                    <textarea class="w3-input w3-border" id="textData" style="height: 800px;">{{ sml }}</textarea>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
         <h2>Step 4. Play it!!</h2>
         <p class="w3-margin">You can either click on the "Play All" button to listen to all the articles that are relevant, or you can play them one by one.</p>
         <button class="w3-button w3-teal w3-block w3-margin" onclick="playSequentially();">Play All</button>
-        <div id="audioList">
+        <div id="audioList" style="overflow: auto; height: 800px;">
             <div class="w3-bar w3-hide" id="audioItem">
               <span onclick="this.parentElement.style.display='none'"
                     class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
@@ -75,6 +75,8 @@
                     <span class="w3-large">Title</span><br>
                     <span style="color: gray">Authors</span><br>
                     <span>Abstract</span>
+                    <br>
+                    <a href="LINK_TO_ARXIV" target="_blank"><button class="w3-button w3-teal w3-margin">View Paper</button></a>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ function callTransform() {
     let keywordVal = localStorage.getItem("keyword");
     keywordInput[0].value = keywordVal;
     let smlInput = document.getElementById("textData");
-    let smlContent = smlInput.textContent;
+    let smlContent = smlInput.value;
     console.log(keywordVal);
     console.log(smlContent);
     let listAudio = document.getElementById("audioList");
@@ -44,6 +44,7 @@ function callTransform() {
                 ogHTML = ogHTML.replace("Abstract", result[i]["Abstract"]);
                 ogHTML = ogHTML.replace("AUDIO", result[i]["Link"].replace("https://arxiv.org/abs/", ""));
                 ogHTML = ogHTML.replace("AUDIO", result[i]["Link"].replace("https://arxiv.org/abs/", ""));
+                ogHTML = ogHTML.replace("LINK_TO_ARXIV", result[i]["Link"]);
                 newElement.innerHTML = ogHTML;
                 listAudio.appendChild(newElement);
             }

@@ -41,20 +41,27 @@ def upload_sml():
 def convert_arxiv():
     data_request = request.json
     session["sml_content"] = data_request['sml']
-    all_articles = split_into_articles(session["sml_content"])
-    session["parsed_articles"] = all_articles
-    for x in all_articles[:5]:
-        print(x)
-    keyword = data_request["keyword"]
-    new_list = sort_list_of_passage(keyword, all_articles)
-    new_list = [x.to_dict() for x in new_list]
-    for it in new_list:
-        if len(glob.glob("static/audio/" + it["Link"].replace("https://arxiv.org/abs/", "") + ".wav")) == 0:
-            text_to_wav(
-                it["Title"] + "..." + it["Authors"] + "..." + it["Abstract"],
-                "static/audio/" + it["Link"].replace("https://arxiv.org/abs/", "")
-            )
-    return new_list
+    if "\\\\" in session["sml_content"]:
+        all_articles = split_into_articles(session["sml_content"])
+        session["parsed_articles"] = all_articles
+        for x in all_articles[:5]:
+            print(x)
+        keyword = data_request["keyword"]
+        new_list = sort_list_of_passage(keyword, all_articles)
+        new_list = [x.to_dict() for x in new_list]
+        for it in new_list:
+            if len(glob.glob("static/audio/" + it["Link"].replace("https://arxiv.org/abs/", "") + ".wav")) == 0:
+                text_to_wav(
+                    it["Title"] + "..." + it["Authors"] + "..." + it["Abstract"],
+                    "static/audio/" + it["Link"].replace("https://arxiv.org/abs/", "")
+                )
+        return new_list
+    else:
+        final_article = ArxivPassage()
+        final_article.abstract = session["sml_content"]
+        final_article.link = "https://arxiv.org/abs/uploaded"
+        text_to_wav(session["sml_content"], "static/audio/uploaded")
+        return [final_article.to_dict()]
 
 
 

@@ -16,7 +16,7 @@ examining their linguistic capabilities through ...
 import re
 
 class ArxivPassage:
-    def __init__(self, date="", title="", authors="", category="", abstract="", link=""):
+    def __init__(self, date="", title="", authors="", category="", abstract="", link="https://arxiv.org/"):
         self.date = date
         self.title = title
         self.authors = authors
@@ -52,12 +52,12 @@ def parse_arxiv(arxiv_text: str, final_obj: ArxivPassage):
         elif arxiv_lines[i].startswith("Title:"):
             final_obj.title = arxiv_lines[i].replace("Title: ", "")
         elif arxiv_lines[i - 1].startswith("Title:") and not arxiv_lines[i].startswith("Authors: "):
-            final_obj.title += arxiv_lines[i]
+            final_obj.title += " " + arxiv_lines[i]
         elif arxiv_lines[i].startswith("Authors: "):
             authors = arxiv_lines[i].replace("Authors: ", "")
             final_obj.authors = authors
         elif arxiv_lines[i - 1].startswith("Authors:") and not arxiv_lines[i].startswith("Categories:"):
-            final_obj.authors += arxiv_lines[i]
+            final_obj.authors += " " + arxiv_lines[i]
         elif arxiv_lines[i].startswith("Categories: "):
             final_obj.category = arxiv_lines[i].replace("Categories: ", "")
     return final_obj
