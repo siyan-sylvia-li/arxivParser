@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/submit.js"></script>
+</head>
+<body>
+
+<div class="w3-panel w3-teal" style="margin-top: 0">
+    <h1>arXiv Parser</h1>
+</div>
+<div class="w3-container">
+    <p>Upload your arxiv email file (downloaded as .eml), then turn individual arxiv papers into audio snippets! Based
+        on match with a keyword you specify!</p>
+    <p>Alternatively, directly copy-paste text into the text box below, with each abstract / segment separated by
+        -------- </p>
+</div>
+
+<div class="w3-container w3-cell-row">
+    <div class="w3-container w3-cell" style="width: 50%">
+        <div class="w3-container">
+            <h2>Step 1. Specify a Keyword</h2>
+            <div class="w3-container w3-margin-bottom">
+                <label class="w3-margin">Keyword / Key Phrase you want relevant papers in!</label>
+                <div class="w3-panel w3-cell-row">
+                    <input class="w3-input w3-border w3-cell" name="keyword_input" style="width: 75%; margin-left: 0"
+                           type="text" onfocus='function vanishText() {
+                        let textPopup = document.getElementById("keyword_upload_msg");
+                        textPopup.setAttribute("class", "w3-hide");
+                    }; vanishText();'>
+                    <button class="w3-button w3-teal w3-margin-left w3-cell" onclick="submitKeyword();">Submit
+                        Keyword!
+                    </button>
+                </div>
+                <p class="w3-hide" id="keyword_upload_msg" style="color: seagreen"><b>Keyword Updated!</b></p>
+            </div>
+
+        </div>
+        <div class="w3-container">
+            <h2>Step 2. Upload .eml or Copy-Paste Texts</h2>
+            <br>
+            <div class="w3-container w3-cell-row">
+                <div class="w3-container w3-cell" style="width: 50%">
+                    <h3>Upload .eml File</h3>
+                    <form method="POST" enctype="multipart/form-data" action="/">
+                        <input type="file" id="myFile" name="uploaded-file" accept=".eml">
+                        <input type="submit" value="Submit .eml">
+                    </form>
+                </div>
+                <div class="w3-container w3-cell">
+                    <h3>Raw Text</h3>
+                    <textarea class="w3-input w3-border" type="text" id="textData" style="height: 600px;">{{ sml }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container w3-cell">
+        <h2>Step 3. Convert to Audio!</h2>
+        <button class="w3-button w3-teal w3-block w3-margin w3-center" onclick="callTransform();">Give Me Magic!!!<br><div class="spinner-border w3-hide" style="align-self: center" id="upload_spinner"></div></button>
+
+        <h2>Step 4. Play it!!</h2>
+        <p class="w3-margin">You can either click on the "Play All" button to listen to all the articles that are relevant, or you can play them one by one.</p>
+        <button class="w3-button w3-teal w3-block w3-margin" onclick="playSequentially();">Play All</button>
+        <div id="audioList">
+            <div class="w3-bar w3-hide" id="audioItem">
+              <span onclick="this.parentElement.style.display='none'"
+                    class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
+                <button onclick="const newAudio = document.getElementById('AUDIO'); newAudio.play();" class="w3-bar-item w3-circle" style="cursor: pointer; width:85px; background-color: white"><img src="../static/imgs/play.svg" class="w3-bar-item w3-circle" style="width:85px" alt="Play current audio"></button>
+                <button onclick="const newAudio = document.getElementById('AUDIO'); newAudio.pause();" class="w3-bar-item w3-circle" style="cursor: pointer; width:85px; background-color: white"><img src="../static/imgs/pause.svg" class="w3-bar-item w3-circle" style="width:85px" alt="Play current audio"></button>
+                <div class="w3-bar-item">
+                    <span class="w3-large">Title</span><br>
+                    <span style="color: gray">Authors</span><br>
+                    <span>Abstract</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
