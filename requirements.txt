@@ -1,6 +1,0 @@
-google-cloud-texttospeech
-flask
-flask-session
-flask-cors
-sentence-transformers
-nltk
