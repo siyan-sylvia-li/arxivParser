@@ -50,6 +50,7 @@ def convert_arxiv():
         new_list = sort_list_of_passage(keyword, all_articles)
         new_list = [x.to_dict() for x in new_list]
         for it in new_list:
+            # Only perform text-to-speech if the audio does not already exist
             if len(glob.glob("static/audio/" + it["Link"].replace("https://arxiv.org/abs/", "") + ".wav")) == 0:
                 text_to_wav(
                     it["Title"] + "..." + it["Authors"] + "..." + it["Abstract"],

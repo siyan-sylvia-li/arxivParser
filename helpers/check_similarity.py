@@ -25,7 +25,6 @@ def sort_list_of_passage(kw: str, arxiv_list: List[ArxivPassage]):
         if score > 0.9:
             sim_list.append((score, x))
     sim_list.sort(reverse=True, key=lambda a: a[0])
-    print(sim_list)
     return [a[1] for a in sim_list]
 
 

@@ -15,6 +15,19 @@ Here are the steps you need to get the parser kicking and working locally. I am 
 1. If you don't have daily arxiv emails and want to sign up for one, please follow [this link](https://info.arxiv.org/help/subscribe.html)
 2. You should also sign up for Google Cloud Platform if you haven't already, and then make a project specifically for arxivParser, and then add [Google Text-to-Speech](https://cloud.google.com/text-to-speech)
 3. Create a conda environment using the `environment.yml` file attached
+```bash
+conda env create -f environment.yml
+```
+4. Run the flask app; there will likely be some error if this is your first time. If you haven't yet, you should run `gcloud auth login` to log in as your GCP user. Make sure your default project is the project for arxivParser.
+```bash
+python3 app.py
+```
+
+## Tool Workflow
+1. Download your .eml file. You can download this by downloading your arxiv email message directly.
+2. Specify the keyword / key phrase you want to look up papers about; SentenceTransformer would then be used to match individual articles to the keyword you specify.
+3. Convert the relevant papers to audio; this may take a hot second.
+4. Play individual audios or play all audio clips! These audio clips will be stored in `static/audio` folder in case you want to go find them. You can specify the voice used by Google text-to-speech in `helpers/read_to_audio.py`.
 
 ### Direct Reading-Out-Loud
 If you just want something read out loud to you, you can copy and paste the content directly into the "Raw Text" text box and continue with the workflow.

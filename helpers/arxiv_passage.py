@@ -1,18 +1,3 @@
-"""
-\\
-arXiv:2309.02553
-Date: Tue, 5 Sep 2023 19:40:45 GMT   (1295kb,D)
-
-Title: Automating Behavioral Testing in Machine Translation
-Authors: Javier Ferrando, Matthias Sperber, Hendra Setiawan, Dominic Telaar,
-  Sa\v{s}a Hasan
-Categories: cs.CL cs.AI
-\\
-  Behavioral testing in NLP allows fine-grained evaluation of systems by
-examining their linguistic capabilities through ...
-\\ ( https://arxiv.org/abs/2309.02553 ,  1295kb)
-"""
-
 import re
 
 class ArxivPassage:
@@ -39,6 +24,7 @@ class ArxivPassage:
 
 
 def parse_arxiv(arxiv_text: str, final_obj: ArxivPassage):
+    # Line-by-line parsing, arxiv-specific
     arxiv_lines = arxiv_text.split("\n")
     for i in range(len(arxiv_lines)):
         arxiv_lines[i] = arxiv_lines[i].strip()
