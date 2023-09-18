@@ -13,7 +13,7 @@ Here are the steps you need to get the parser kicking and working locally. I am 
 
 ## Setting Up
 1. If you don't have daily arxiv emails and want to sign up for one, please follow [this link](https://info.arxiv.org/help/subscribe.html)
-2. You should also sign up for Google Cloud Platform if you haven't already, and then make a project specifically for arxivParser, and then add [Google Text-to-Speech](https://cloud.google.com/text-to-speech)
+2. You should also sign up for Google Cloud Platform if you haven't already, and then make a project specifically for arxivParser, and then add [Google Text-to-Speech](https://cloud.google.com/text-to-speech); the Text-to-Speech service is quite cheap, the Standard voice pricing is US$0.000004 per character (US$4 per 1 million characters) (see [here](https://cloud.google.com/text-to-speech/pricing)), plus new users get $300 free credit!
 3. Create a conda environment using the `environment.yml` file attached
 ```bash
 conda env create -f environment.yml
@@ -26,8 +26,9 @@ python3 app.py
 ## Tool Workflow
 1. Download your .eml file. You can download this by downloading your arxiv email message directly.
 2. Specify the keyword / key phrase you want to look up papers about; SentenceTransformer would then be used to match individual articles to the keyword you specify.
-3. Convert the relevant papers to audio; this may take a hot second.
-4. Play individual audios or play all audio clips! These audio clips will be stored in `static/audio` folder in case you want to go find them. You can specify the voice used by Google text-to-speech in `helpers/read_to_audio.py`.
+3. Upload the .eml file. The keyword you just specified in the text field would disappear, but don't worry, it has been remembered! I just don't know how to persist it because website design is not my passion.
+4. Convert the relevant papers to audio; this may take a hot second.
+5. Play individual audios or play all audio clips (right now you can't pause once you hit play all, unfortunately, will fix that hopefully soon and if there is popular demand!)! These audio clips will be stored in `static/audio` folder in case you want to go find them. You can specify the voice used by Google text-to-speech in `helpers/read_to_audio.py`.
 
 ### Direct Reading-Out-Loud
 If you just want something read out loud to you, you can copy and paste the content directly into the "Raw Text" text box and continue with the workflow.
