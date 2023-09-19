@@ -55,22 +55,36 @@ function callTransform() {
 }
 
 function playSequentially() {
-    let allAudios = document.getElementsByTagName("audio");
-    console.log(allAudios);
-    let allSrcs = Array();
-    for (let i = 0; i < allAudios.length; i++) {
-        allSrcs.push(allAudios[i].getAttribute("src"));
-    }
-    let audio = new Audio(allSrcs[0]);
-
-    audio.play();
-
-    let index = 1;
-    audio.onended = function() {
-        if(index < allSrcs.length){
-            audio.src=allSrcs[index];
-            audio.play();
-            index++;
+    let masterAudio = document.getElementById("allAudios");
+    if (masterAudio == null) {
+        let allAudios = document.getElementsByTagName("audio");
+        console.log(allAudios);
+        let allSrcs = Array();
+        for (let i = 0; i < allAudios.length; i++) {
+            allSrcs.push(allAudios[i].getAttribute("src"));
         }
-    };
+        let audio = new Audio(allSrcs[0]);
+        audio.setAttribute("id", "allAudios")
+
+        document.body.appendChild(audio);
+
+        audio.play();
+
+        let index = 1;
+        audio.onended = function() {
+            if(index < allSrcs.length){
+                audio.src=allSrcs[index];
+                audio.play();
+                index++;
+            }
+        };
+    } else {
+        masterAudio.play();
+    }
+
+}
+
+function pauseAll() {
+    let masterAudio = document.getElementById("allAudios");
+    masterAudio.pause();
 }

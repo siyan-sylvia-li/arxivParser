@@ -22,7 +22,7 @@ def sort_list_of_passage(kw: str, arxiv_list: List[ArxivPassage]):
     sim_list = []
     for x in arxiv_list:
         score = find_similarity(kw, x.abstract, x.title)
-        if score > 0.9:
+        if score > 1:
             sim_list.append((score, x))
     sim_list.sort(reverse=True, key=lambda a: a[0])
     return [a[1] for a in sim_list]
