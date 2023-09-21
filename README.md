@@ -9,6 +9,8 @@ But what if it can now look like this?
 
 Complete with keyword specification? That sure sounds nice!
 
+[This](https://www.youtube.com/watch?v=C1CUzLL9Ryk) is a video of me rambling about how to use the current system. When building this I focused on what worked so nothing is too polished. But I have made it into a workflow that works for me and I hope this can benefit you as well!
+
 Here are the steps you need to get the parser kicking and working locally. I am not yet hosting it on a public site, so you would need to set up Google text-to-speech yourself, which should just be about setting up Google Cloud Platform, then creating a project and adding Google Text-to-speech to it. 
 
 ## Setting Up
